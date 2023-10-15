@@ -1,13 +1,26 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Montserrat', sans-serif;
+}
+.leaflet-container {
+  margin-top: 10px;
+  min-height:500px;
+  min-width: 500px;
+  height: 70%;
+  width: 90%;
+  border-radius: 40px;
+  position: relative;
+}
+.leaflet-control-zoom, .leaflet-bar, .leaflet-control{
+  border-radius: 50px;
+  overflow: hidden;
+}
+.leaflet-control-attribution{
+  display: none;
 }
