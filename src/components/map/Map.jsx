@@ -29,7 +29,10 @@ class MapExample extends Component {
       const formData = new FormData();
       formData.append("file", selectedFile);
       axios
-        .post("YOUR_UPLOAD_ENDPOINT", formData)
+        .post("http://213.159.214.106:5000//upload file", formData, {
+          "Content-Type": "multipart/form-data", // Adjust the content type for file uploads.
+          "Access-Control-Allow-Origin": "*", // Replace with the appropriate origin.
+        })
         .then((response) => {
           console.log("Файл успешно загружен:", response);
           this.props.setRes(response.data);
@@ -59,62 +62,14 @@ class MapExample extends Component {
       };
 
       await axios
-        .post("YOUR_API_ENDPOINT", postData)
+        .post("http://213.159.214.106:5000/processing", postData)
         .then((response) => {
           this.props.setRes(response.data);
-          this.props.setRes({
-            "positive objects": 20,
-            "negative objects": 10,
-            "criterion 1": 60,
-            "criterion 2": -40,
-            "criterion 3": 70,
-            "criterion 4": -30,
-            "overall assessment": 89,
-            recommendations: [
-              "Фитнес-клуб",
-              "Стадион",
-              "Рынок",
-              "Велодорожка",
-              "Парки",
-            ],
-          });
         })
         .catch((error) => {
           this.props.setRes(error);
-          this.props.setRes({
-            "positive objects": 20,
-            "negative objects": 10,
-            "criterion 1": 60,
-            "criterion 2": -40,
-            "criterion 3": 70,
-            "criterion 4": -30,
-            "overall assessment": 89,
-            recommendations: [
-              "Фитнес-клуб",
-              "Стадион",
-              "Рынок",
-              "Велодорожка",
-              "Парки",
-            ],
-          });
         });
     } else {
-      this.props.setRes({
-        "positive objects": 20,
-        "negative objects": 10,
-        "criterion 1": 60,
-        "criterion 2": -40,
-        "criterion 3": 70,
-        "criterion 4": -30,
-        "overall assessment": 89,
-        recommendations: [
-          "Фитнес-клуб",
-          "Стадион",
-          "Рынок",
-          "Велодорожка",
-          "Парки",
-        ],
-      });
       console.log("Поля не заполнены");
     }
   };
@@ -124,10 +79,6 @@ class MapExample extends Component {
       (position) => {
         const { latitude, longitude } = position.coords;
         this.setState({ userLocation: { lat: latitude, lng: longitude } });
-        const newMarker = {
-          position: { lat: latitude, lng: longitude },
-          key: Date.now(),
-        };
       },
       (error) => {
         console.error("Error getting user location: ", error);
@@ -171,7 +122,6 @@ class MapExample extends Component {
   handleSearch() {
     const { searchQuery } = this.state;
     this.props.setSearchParam(searchQuery);
-    const paramString = `https://overpass-api.de/api/interpreter [out:json]; area["name"="${searchQuery}"]; out body;`;
     axios
       .get(
         `https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery}`
@@ -261,15 +211,17 @@ class MapExample extends Component {
                 type="file"
               ></input>
             </label>
-            <button className={styles.submit_btn} onClick={this.handleSubmit}>
-              Начать анализ
-            </button>{" "}
-            <button
-              className={styles.reset_btn}
-              onClick={this.handleMarkerReset}
-            >
-              Сброс
-            </button>
+            <div className={styles.flexRow}>
+              <button className={styles.submit_btn} onClick={this.handleSubmit}>
+                Начать анализ
+              </button>{" "}
+              <button
+                className={styles.reset_btn}
+                onClick={this.handleMarkerReset}
+              >
+                Сброс
+              </button>
+            </div>
           </div>
         </div>
       </div>

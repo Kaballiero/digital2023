@@ -124,7 +124,7 @@ const Landing = () => {
           ))}
         </div>
       </div>
-      <button className={styles.btn_start} onClick={handleButtonClick}>Начать анализ</button>
+      <button className={styles.btn_start} onClick={handleButtonClick}>Начать</button>
       <div className={styles.footer}>
         <div className={styles.footer_text}>
           <h1 className={styles.text_lable}>Наши партнеры: </h1>
