@@ -293,6 +293,8 @@
   }
 }
 @media (max-width: 650px) {
+  .header,
+  .about_container{margin: 20px 0;}
   .text {
     width: 100% !important;
   }

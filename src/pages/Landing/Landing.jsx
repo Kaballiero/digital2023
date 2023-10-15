@@ -35,8 +35,8 @@ const tutor = [
     img: step3,
     text: (
       <h1 className={styles.step_text}>
-        Выберите <b className={styles.green}>фильтр</b> отображения регионов на{" "}
-        <b className={styles.blue}>карте</b>
+        Нажатием по карте выделите <b className={styles.green}>часть местности</b> для{" "}
+        <b className={styles.blue}>анализа</b>
       </h1>
     ),
   },
